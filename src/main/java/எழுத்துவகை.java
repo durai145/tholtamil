@@ -3,6 +3,7 @@ public class எழுத்துவகை {
     final static int மெல்லினஎண்மாறிலி = 256;
     final static int உயிர்எண்மாறிலி = 512;
     final static int ஒற்றுஎண்மாறிலி = 1024;
+    final static int ஆயுதஎண்மாறிலி =  2048;
 
     final static int நெடிலெண்மாறிலி = 8;
     final static int இடையினஎண்மாறிலி = வல்லினஎண்மாறிலி | மெல்லினஎண்மாறிலி;
@@ -78,11 +79,18 @@ public class எழுத்துவகை {
         return ஒருங்குறி;
     }
 
-
+    private String unicode() {
+        StringBuffer sb = new StringBuffer();
+       for(int i=0; i < ஒருங்குறி.length(); i++) {
+            char uniChar= ஒருங்குறி.charAt(i);
+           sb.append(String.format("\\u%04x", (int) uniChar));
+       }
+      return sb.toString();
+    }
 
 
     @Override
     public String toString() {
-        return "\n" + ஒருங்குறி + "=" + String.format("%h", தமிழ்தனிகுறியீடு) +  "|" + Binary.print(தமிழ்தனிகுறியீடு) + "|மெய்வகை=" + மெய்வகையைபெறு() + "|உயிர்வகை=" + உயிர்வகையைபெறு() + "|யாபியலெழுத்துவகை="+  யாபியலெழுத்துவகையைபெறு();
+        return "\n" + ஒருங்குறி +  "=" +  unicode() +"|தமிழ்தனிகுறியீடு="  + String.format("%d", தமிழ்தனிகுறியீடு) +  "|படி16எண்=" + String.format("%04x", தமிழ்தனிகுறியீடு) +  "|படி2எண்=" + Binary.print(தமிழ்தனிகுறியீடு) + "|மெய்வகை=" + மெய்வகையைபெறு() + "|உயிர்வகை=" + உயிர்வகையைபெறு() + "|யாபியலெழுத்துவகை="+  யாபியலெழுத்துவகையைபெறு();
     }
 }
